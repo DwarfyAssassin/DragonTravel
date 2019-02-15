@@ -31,11 +31,17 @@ public class NMSHandler {
 
 	public IRyeDragon getRyeDragon(Location loc) {
 		try {
-			final Class<?> clazz = Class.forName(packageName.replace("..", "."
-					+ version + ".RyeDragon"));
+		    if (Class.forName("thermos.Thermos") != null) {
+		    	final Class<?> clazz = Class.forName("eu.phiwa.dragontravel.nms.Thermos.RyeDragon");
+		    	return (IRyeDragon) clazz.getConstructor(new Class[] { Location.class }).newInstance(loc);
+		    }
+		} catch (ClassNotFoundException | InvocationTargetException | InstantiationException | NoSuchMethodException | IllegalAccessException e) {
+		    //Thermos is not instaled
+		}
+		try {
+			final Class<?> clazz = Class.forName(packageName.replace("..", "." + version + ".RyeDragon"));
 			if (IRyeDragon.class.isAssignableFrom(clazz)) {
-				return (IRyeDragon) clazz.getConstructor(
-						new Class[] { Location.class }).newInstance(loc);
+				return (IRyeDragon) clazz.getConstructor(new Class[] { Location.class }).newInstance(loc);
 			}
 		} catch (ClassNotFoundException | InvocationTargetException
 				| InstantiationException | NoSuchMethodException
