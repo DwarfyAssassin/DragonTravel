@@ -60,6 +60,15 @@ public class NMSHandler {
 
 	public IEntityRegister getEntityRegister() {
 		try {
+		    if (Class.forName("thermos.Thermos") != null) {
+		    	final Class<?> clazz = Class.forName("eu.phiwa.dragontravel.nms.Thermos.EntityRegister");
+		    	return (IEntityRegister) clazz.getConstructor().newInstance();
+		    }
+		} catch (ClassNotFoundException | InvocationTargetException | InstantiationException | NoSuchMethodException | IllegalAccessException e) {
+		    //Thermos is not instaled
+		}
+		
+		try {
 			final Class<?> clazz = Class.forName(packageName.replace("..", "."
 					+ version + ".EntityRegister"));
 			if (IEntityRegister.class.isAssignableFrom(clazz)) {
