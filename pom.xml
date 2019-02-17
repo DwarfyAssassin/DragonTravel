@@ -28,7 +28,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>eu.phiwa</groupId>
     <artifactId>DragonTravel</artifactId>
-    <version>01.007.02</version>
+    <version>01.007.02-Thermos.4</version>
     <build>
         <resources>
             <resource>
@@ -64,6 +64,7 @@
                         </includes>
                     </artifactSet>
                 </configuration>
+                  
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -71,6 +72,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                         
 	                        <createDependencyReducedPom>false</createDependencyReducedPom>
 	                        <relocations>
 	                          <relocation>
@@ -81,6 +83,7 @@
 	                    </configuration>
                     </execution>
                 </executions>
+                
             </plugin>
         </plugins>
     </build>
